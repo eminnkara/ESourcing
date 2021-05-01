@@ -23,6 +23,8 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ESourcing.Sourcing", "ESourcing.Sourcing\ESourcing.Sourcing.csproj", "{EC653604-6170-4FBB-A32F-9EE75845435B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBusRabbitMQ", "EventBusRabbitMQ\EventBusRabbitMQ.csproj", "{8521A4FF-ECB4-497B-8936-A51CF428B68C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,14 @@ Global
 		{EC653604-6170-4FBB-A32F-9EE75845435B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EC653604-6170-4FBB-A32F-9EE75845435B}.Release|x64.ActiveCfg = Release|Any CPU
 		{EC653604-6170-4FBB-A32F-9EE75845435B}.Release|x64.Build.0 = Release|Any CPU
+		{8521A4FF-ECB4-497B-8936-A51CF428B68C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8521A4FF-ECB4-497B-8936-A51CF428B68C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8521A4FF-ECB4-497B-8936-A51CF428B68C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8521A4FF-ECB4-497B-8936-A51CF428B68C}.Debug|x64.Build.0 = Debug|Any CPU
+		{8521A4FF-ECB4-497B-8936-A51CF428B68C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8521A4FF-ECB4-497B-8936-A51CF428B68C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8521A4FF-ECB4-497B-8936-A51CF428B68C}.Release|x64.ActiveCfg = Release|Any CPU
+		{8521A4FF-ECB4-497B-8936-A51CF428B68C}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +78,7 @@ Global
 		{4C63493D-C4C1-4DB0-A119-EDDCE2A1612B} = {CBC6564C-D834-4E91-9794-76485FA258C4}
 		{A83D11ED-DECA-4BE2-895E-A7A5198AB1FF} = {8641D410-6B03-4E56-91CE-89CE7C9B6DBE}
 		{EC653604-6170-4FBB-A32F-9EE75845435B} = {36A4D6FF-9A73-4E75-847E-72D225B17EE1}
+		{8521A4FF-ECB4-497B-8936-A51CF428B68C} = {4C63493D-C4C1-4DB0-A119-EDDCE2A1612B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33C83A41-AC0E-4328-9C4E-C4EC3C3F92FC}
