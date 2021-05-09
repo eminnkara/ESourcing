@@ -58,6 +58,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ConnectionStrings:OrderConnection=Server=sourcingsqldb;Database=OrderDb;User Id=sa;Password=M123456.;"
       - "EventBus:HostName=rabbitmq"
+    depends_on:
+      - sourcingsqldb
+      - rabbitmq
     ports:
       - "8002:80"
     volumes:
