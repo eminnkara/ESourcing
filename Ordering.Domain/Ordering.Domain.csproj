@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Xpo" Version="20.1.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Repositories\Base\IRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Repositories\IOrderRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Entities\Base\IEntityBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Entities\Base\Entity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

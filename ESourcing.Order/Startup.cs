@@ -1,21 +1,23 @@
-using Esourcing.Sourcing.Data;
-using Esourcing.Sourcing.Data.Interface;
-using Esourcing.Sourcing.Repositories;
-using Esourcing.Sourcing.Repositories.Interfaces;
-using Esourcing.Sourcing.Settings;
+using ESourcing.Order.Consumers;
+using ESourcing.Order.Extensions;
 using EventBusRabbitMQ;
-using EventBusRabbitMQ.Producer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Ordering.Application;
+using Ordering.Infrastructure;
 using RabbitMQ.Client;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace ESourcing.Sourcing
+namespace ESourcing.Order
 {
     public class Startup
     {
@@ -29,15 +31,15 @@ namespace ESourcing.Sourcing
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            #region Infrastructure
+            services.AddInfrastructure(Configuration);
+            #endregion
 
-            services.Configure<SourcingDatabaseSettings>(Configuration.GetSection(nameof(SourcingDatabaseSettings)));
-            services.AddSingleton<ISourcingDatabaseSettings>(sp => sp.GetRequiredService<IOptions<SourcingDatabaseSettings>>().Value);
+            #region Application
+            services.AddApplication();
+            #endregion
 
-            #region Project Dependencies
-            services.AddTransient<ISourcingContext, SourcingContext>();
-            services.AddTransient<IBidRepository, BidRepository>();
-            services.AddTransient<IAuctionRepository, AuctionRepository>();
+            #region AutoMapper
             services.AddAutoMapper(typeof(Startup));
             #endregion
 
@@ -45,7 +47,7 @@ namespace ESourcing.Sourcing
             services.AddSwaggerGen(
                 c => c.SwaggerDoc("v1", new OpenApiInfo()
                 {
-                    Title = "ESourcing.Sourcing",
+                    Title = "ESourcing.Products",
                     Version = "v1"
                 })
             );
@@ -75,8 +77,10 @@ namespace ESourcing.Sourcing
                 return new DefaultRabbitMQPersistentConnection(factory, retryCount, logger);
             });
 
-            services.AddSingleton<EventBusRabbitMQProducer>();
+            services.AddSingleton<EventBusOrderCreateConsumer>();
             #endregion
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -86,7 +90,7 @@ namespace ESourcing.Sourcing
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ESourcing.Sourcing v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ESourcing.Order v1"));
             }
 
             app.UseRouting();
@@ -97,6 +101,8 @@ namespace ESourcing.Sourcing
             {
                 endpoints.MapControllers();
             });
+
+            app.UseEventBusListener();
         }
     }
 }

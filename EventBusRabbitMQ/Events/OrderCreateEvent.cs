@@ -1,16 +1,16 @@
-﻿using System;
+﻿using EventBusRabbitMQ.Events.Interfaces;
+using System;
 
-namespace EventBusRabbitMQ.Events.Interfaces
+namespace EventBusRabbitMQ.Events
 {
-    public abstract class IEvent
+    public class OrderCreateEvent : IEvent
     {
-        public Guid RequestId { get; private init; }
-        public DateTime CreationDate { get; private init; }
-
-        public IEvent()
-        {
-            RequestId = Guid.NewGuid();
-            CreationDate = DateTime.UtcNow;
-        }
+        public string Id { get; set; }
+        public string AuctionId { get; set; }
+        public string ProductId { get; set; }
+        public string SellerUserName { get; set; }
+        public decimal Price { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public int Quantity { get; set; }
     }
 }

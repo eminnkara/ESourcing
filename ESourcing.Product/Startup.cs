@@ -44,6 +44,7 @@ namespace ESourcing.Products
             #endregion
 
             services.AddControllers();
+
             #region Swagger Dependencies
             services.AddSwaggerGen(
                 c => c.SwaggerDoc("v1", new OpenApiInfo()

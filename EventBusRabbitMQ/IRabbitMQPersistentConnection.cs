@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EventBusRabbitMQ.Producer
+namespace EventBusRabbitMQ
 {
     public interface IRabbitMQPersistentConnection : IDisposable
     {
